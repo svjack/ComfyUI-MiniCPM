@@ -2,6 +2,15 @@
 
 🖼️ A ComfyUI custom node for MiniCPM vision-language models, enabling high-quality image captioning and analysis.
 
+- MiniCPM-V-4
+[![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4.json)
+- MiniCPM-V-4 GGUF
+[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4-GGUF.json)
+- MiniCPM-V-4 Batch Images
+[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_batchImages.json)
+- MiniCPM-V-4 video
+[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_video.json)
+
 ---
 
 ## Features
@@ -28,9 +37,12 @@ git clone https://github.com/1038lab/comfyui-minicpm.git
 Install required dependencies:
 
 ```bash
-pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
+ComfyUI\python_embeded\python pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
 ```
 
+> [!note]
+> `llama-cpp-python` CUDA Installation for ComfyUI Portable
+> - [llama_cpp_install.md](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/llama_cpp_install.md)
 ---
 
 ## Supported Models
@@ -41,13 +53,17 @@ pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
 | MiniCPM-V-4-int4   | 4-bit quantized version, smaller memory footprint |
 | MiniCPM-V-4        | Full precision version, higher quality |
 
+https://huggingface.co/openbmb/MiniCPM-V-4
+
 ### GGUF Models
 | Model              | Description                            |
 | ------------------ | -------------------------------------- |
 | MiniCPM-V-4 (GGUF) | Latest stable GGUF model, best quality |
 
+https://huggingface.co/openbmb/MiniCPM-V-4-gguf
+
 > The models will be automatically downloaded on first run.
-> Manual download and placement into `models/prompt_generator` (transformers) or `models/LLM/GGUF` (GGUF) is also supported.
+> Manual download and placement into `models/LLM` (transformers) or `models/LLM/GGUF` (GGUF) is also supported.
 
 ---
 

@@ -164,8 +164,3 @@ https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 ## License
 
 GPL-3.0 License
-
-```
-
-If you want me to help with adding more sections or tweaks, just say!
-```

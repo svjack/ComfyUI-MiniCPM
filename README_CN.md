@@ -4,24 +4,21 @@
 
 **🎉 现在支持 MiniCPM-V-4.5！最新的模型，拥有增强的能力。**
 
-- MiniCPM-V-4
-[![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4.json)
-- MiniCPM-V-4 GGUF
-[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4-GGUF.json)
-- MiniCPM-V-4 Batch Images
-[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_batchImages.json)
-- MiniCPM-V-4 video
-[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_video.json)
-
 ---
 ## 新闻与更新
 
 - **2025/08/27**：ComfyUI-MiniCPM 更新至 **v1.1.0**（[更新日志](https://github.com/1038lab/ComfyUI-MiniMPC/blob/main/update.md#v110-2025-08-27)）
-
-  - 新增对 **MiniCPM-V-4.5** 模型（Transformers）的支持
+[![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
+- 新增对 **MiniCPM-V-4.5** 模型（Transformers）的支持
 
 
 ## 功能特点
+- MiniCPM-V-4 GGUF
+[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](example_workflows/MiniCPM-V-4-GGUF.json)
+- MiniCPM-V-4 Batch Images
+[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](example_workflows/MiniCPM-V-4_batchImages.json)
+- MiniCPM-V-4 video
+[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](example_workflows/MiniCPM-V-4_video.json)
 
 - 支持 **MiniCPM-V-4.5 (Transformers)** 和 **MiniCPM-V-4.0 (GGUF)** 模型
 - **最新 MiniCPM-V-4.5** 通过 Transformers 提供增强的能力
@@ -43,13 +40,17 @@
 cd ComfyUI/custom_nodes
 git clone https://github.com/1038lab/comfyui-minicpm.git
 ```
-
 安装所需依赖：
 
 ```bash
-pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
+cd ComfyUI/custom_nodes/comfyui-minicpm
+ComfyUI\python_embeded\python pip install -r requirements.txt
+ComfyUI\python_embeded\python llama_cpp_install.py
 ```
 
+> [!note]
+> `llama-cpp-python` CUDA Installation for ComfyUI Portable
+> - [llama_cpp_install_zh.md](llama_cpp_install/llama_cpp_install_zh.md)
 ---
 
 ## 支持的模型

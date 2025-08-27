@@ -2,6 +2,7 @@
 
 ## V1.1.0 (2025-08-27)
 ### New Features
+[![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
 - **MiniCPM-V-4.5 Model Support**: Added comprehensive support for the latest MiniCPM-V-4.5 models
   - New Transformers model: `MiniCPM-V-4.5` (openbmb/MiniCPM-V-4_5) - Latest full precision version
   - New quantized model: `MiniCPM-V-4.5-int4` (openbmb/MiniCPM-V-4_5-int4) - Memory-efficient 4-bit version
@@ -21,18 +22,23 @@
 ## V1.0.0 (2025-08-25)
 ### Initial Release
 - **MiniCPM-V-4 Transformers Support**: Full integration with Hugging Face transformers models
+[![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](example_workflows/MiniCPM-V-4.json)
   - MiniCPM-V-4 full precision model
   - MiniCPM-V-4-int4 quantized model
 - **MiniCPM-V-4 GGUF Support**: Comprehensive GGUF model support via llama-cpp-python
+[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](example_workflows/MiniCPM-V-4-GGUF.json)
   - Multiple quantization levels (Q4_0 to Q8_0)
   - Optimized memory usage and performance
 - **Dual Node Architecture**: 
   - Basic nodes for simple usage
   - Advanced nodes with full parameter control
 - **Image & Video Processing**: Support for both image and video input processing
+[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](example_workflows/MiniCPM-V-4_video.json)
 - **Memory Management**: Three modes - Keep in Memory, Clear After Run, Global Cache
 - **Caption Types**: 14 different preset prompt types for various use cases
 - **Legacy Compatibility**: Backward compatible node for existing workflows
+
+[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](example_workflows/MiniCPM-V-4_batchImages.json)
 
 ### Core Features
 - **Multi-Modal Processing**: Image and video content understanding

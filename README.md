@@ -4,21 +4,19 @@ A custom ComfyUI node for MiniCPM vision-language models, supporting v4, v4.5, a
 
 **🎉 Now supports MiniCPM-V-4.5! The latest model with enhanced capabilities.**
 
-- MiniCPM-V-4
-[![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4.json)
-- MiniCPM-V-4 GGUF
-[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4-GGUF.json)
-- MiniCPM-V-4 Batch Images
-[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_batchImages.json)
-- MiniCPM-V-4 video
-[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_video.json)
-
 ---
 ## News & Updates
-- **2025/08/27**: Update ComfyUI-MIniCPM to **v1.1.0** ( [update.md](https://github.com/1038lab/ComfyUI-MiniMPC/blob/main/update.md#v110-2025-08-27) )
-  -Added support for **MiniCPM-V-4.5** models (Transformers)
+- **2025/08/27**: Update ComfyUI-MIniCPM to **v1.1.0** ( [update.md](update.md#v110-2025-08-27) )
+[![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
+- Added support for **MiniCPM-V-4.5** models (Transformers)
   
 ## Features
+- MiniCPM-V-4 GGUF
+[![MiniCPM-V-4-GGUF](example_workflows/MiniCPM-V-4-GGUF.jpg)](example_workflows/MiniCPM-V-4-GGUF.json)
+- MiniCPM-V-4 Batch Images
+[![MiniCPM-V-4_batchImages](example_workflows/MiniCPM-V-4_batchImages.jpg)](example_workflows/MiniCPM-V-4_batchImages.json)
+- MiniCPM-V-4 video
+[![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](example_workflows/MiniCPM-V-4_video.json)
 
 - Supports **MiniCPM-V-4.5 (Transformers)** and **MiniCPM-V-4.0 (GGUF)** models
 - **Latest MiniCPM-V-4.5** with enhanced capabilities via Transformers
@@ -44,12 +42,14 @@ git clone https://github.com/1038lab/comfyui-minicpm.git
 Install required dependencies:
 
 ```bash
-ComfyUI\python_embeded\python pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
+cd ComfyUI/custom_nodes/comfyui-minicpm
+ComfyUI\python_embeded\python pip install -r requirements.txt
+ComfyUI\python_embeded\python llama_cpp_install.py
 ```
 
 > [!note]
 > `llama-cpp-python` CUDA Installation for ComfyUI Portable
-> - [llama_cpp_install.md](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/llama_cpp_install.md)
+> - [llama_cpp_install.md](llama_cpp_install/llama_cpp_install.md)
 ---
 
 ## Supported Models

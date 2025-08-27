@@ -1,6 +1,8 @@
 # ComfyUI-MiniCPM
 
-🖼️ A ComfyUI custom node for MiniCPM vision-language models, enabling high-quality image captioning and analysis.
+A custom ComfyUI node for MiniCPM vision-language models, supporting v4, v4.5, and v4 GGUF formats, enabling high-quality image captioning and visual analysis.
+
+**🎉 Now supports MiniCPM-V-4.5! The latest model with enhanced capabilities.**
 
 - MiniCPM-V-4
 [![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4.json)
@@ -12,16 +14,21 @@
 [![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_video.json)
 
 ---
-
+## News & Updates
+- **2025/08/27**: Update ComfyUI-MIniCPM to **v1.1.0** ( [update.md](https://github.com/1038lab/ComfyUI-MiniMPC/blob/main/update.md#v110-2025-08-27) )
+  -Added support for **MiniCPM-V-4.5** models (Transformers)
+  
 ## Features
 
-- Supports both **MiniCPM-V-4 (Transformers)** and **MiniCPM-V-4 (GGUF)** models
+- Supports **MiniCPM-V-4.5 (Transformers)** and **MiniCPM-V-4.0 (GGUF)** models
+- **Latest MiniCPM-V-4.5** with enhanced capabilities via Transformers
 - Multiple caption types to suit different use cases (Describe, Caption, Analyze, etc.)
 - Memory management options to balance VRAM usage and speed
 - Auto-downloads model files on first use for easy setup
 - Customizable parameters: max tokens, temperature, top-p/k sampling, repetition penalty
 - Advanced node with full parameter control
 - Legacy node for backward compatibility
+- Comprehensive GGUF quantization options for V4.0 models
 
 ---
 
@@ -48,17 +55,35 @@ ComfyUI\python_embeded\python pip install -r ComfyUI/custom_nodes/comfyui-minicp
 ## Supported Models
 
 ### Transformers Models
-| Model              | Description                            |
-| ------------------ | -------------------------------------- |
-| MiniCPM-V-4-int4   | 4-bit quantized version, smaller memory footprint |
-| MiniCPM-V-4        | Full precision version, higher quality |
+| Model                | Description                                    |
+| -------------------- | ---------------------------------------------- |
+| **MiniCPM-V-4.5**        | 🌟 **Latest V4.5 version with enhanced capabilities** |
+| **MiniCPM-V-4.5-int4**   | 🌟 **V4.5 4-bit quantized version, smaller memory footprint** |
+| MiniCPM-V-4          | V4.0 full precision version, higher quality   |
+| MiniCPM-V-4-int4     | V4.0 4-bit quantized version, smaller memory footprint |
 
+https://huggingface.co/openbmb/MiniCPM-V-4_5  
+https://huggingface.co/openbmb/MiniCPM-V-4_5-int4  
 https://huggingface.co/openbmb/MiniCPM-V-4
+https://huggingface.co/openbmb/MiniCPM-V-4-int4
 
 ### GGUF Models
-| Model              | Description                            |
-| ------------------ | -------------------------------------- |
-| MiniCPM-V-4 (GGUF) | Latest stable GGUF model, best quality |
+
+> **Note**: MiniCPM-V-4.5 GGUF models are temporarily unavailable due to llama-cpp-python compatibility issues. Please use MiniCPM-V-4.5 Transformers models or MiniCPM-V-4.0 GGUF models.
+
+#### MiniCPM-V-4.0 (Fully Supported)
+| Model                | Size      | Description                           |
+| -------------------- | --------- | ------------------------------------- |
+| **MiniCPM-V-4 (Q4_K_M)** | ~2.19GB   | **Recommended balance of quality/size** |
+| MiniCPM-V-4 (Q4_0)      | ~2.08GB   | Standard 4-bit quantization          |
+| MiniCPM-V-4 (Q4_1)      | ~2.29GB   | 4-bit quantization improved          |
+| MiniCPM-V-4 (Q4_K_S)    | ~2.09GB   | 4-bit K-quants small                 |
+| MiniCPM-V-4 (Q5_0)      | ~2.51GB   | 5-bit quantization                   |
+| MiniCPM-V-4 (Q5_1)      | ~2.72GB   | 5-bit quantization improved          |
+| MiniCPM-V-4 (Q5_K_M)    | ~2.56GB   | 5-bit K-quants medium                |
+| MiniCPM-V-4 (Q5_K_S)    | ~2.51GB   | 5-bit K-quants small                 |
+| MiniCPM-V-4 (Q6_K)      | ~2.96GB   | Very high quality                    |
+| MiniCPM-V-4 (Q8_0)      | ~3.83GB   | Highest quality quantized            |
 
 https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 
@@ -152,6 +177,17 @@ https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 
 ## Tips
 
+### VRAM Requirements
+* **4-6GB VRAM**: Use MiniCPM-V-4-int4 or GGUF Q4 models
+* **8GB VRAM**: Use MiniCPM-V-4.5-int4 (recommended)
+* **12GB+ VRAM**: Can use full MiniCPM-V-4.5
+* **CUDA OOM Error**: Try int4 quantized models or CPU mode
+
+### General Tips
+* 🌟 **Try MiniCPM-V-4.5 Transformers first** - enhanced capabilities over V4.0
+* For **best balance**: use MiniCPM-V-4 (Q4_K_M) GGUF model
+* For **highest quality**: use MiniCPM-V-4.5 Transformers
+* For **low VRAM**: use MiniCPM-V-4.5-int4 or MiniCPM-V-4 (Q4_0) GGUF
 * Adjust temperature (0.6–0.8) for balancing creativity and coherence.
 * Use top-p (0.9) and top-k (80) sampling for natural output diversity.
 * Lower max tokens or precision (bf16/fp16) for faster generation on less powerful GPUs.

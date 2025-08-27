@@ -26,76 +26,84 @@
 		"Question": "What question could be asked based on this image?",
 		"Creative": "Describe this image as if writing the beginning of a short story."
 	},
+	"transformers_models": {
+		"MiniCPM-V-4.5-int4": {
+			"name": "openbmb/MiniCPM-V-4_5-int4",
+			"description": "V4.5 4-bit quantized version, smaller memory footprint"
+		},
+		"MiniCPM-V-4-int4": {
+			"name": "openbmb/MiniCPM-V-4-int4",
+			"description": "V4.0 4-bit quantized version, smaller memory footprint"
+		},
+		"MiniCPM-V-4.5": {
+			"name": "openbmb/MiniCPM-V-4_5",
+			"description": "Latest V4.5 version with enhanced capabilities"
+		},
+		"MiniCPM-V-4": {
+			"name": "openbmb/MiniCPM-V-4",
+			"description": "V4.0 full precision version, higher quality"
+		}
+	},
 	"gguf_models": {
 		"MiniCPM-V-4 (Q4_0)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q4_0.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.08 GB - 4-bit quantization"
+			"description": "V4.0 - 2.08GB - 4-bit quantization",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q4_1)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q4_1.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.29 GB - 4-bit quantization improved"
+			"description": "V4.0 - 2.29GB - 4-bit quantization improved",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q4_K_M)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q4_K_M.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.19 GB - 4-bit K-quants medium"
+			"description": "V4.0 - 2.19GB - 4-bit K-quants medium",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q4_K_S)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q4_K_S.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.09 GB - 4-bit K-quants small"
+			"description": "V4.0 - 2.09GB - 4-bit K-quants small",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q5_0)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q5_0.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.51 GB - 5-bit quantization"
+			"description": "V4.0 - 2.51GB - 5-bit quantization",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q5_1)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q5_1.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.72 GB - 5-bit quantization improved"
+			"description": "V4.0 - 2.72GB - 5-bit quantization improved",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q5_K_M)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q5_K_M.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.56 GB - 5-bit K-quants medium"
+			"description": "V4.0 - 2.56GB - 5-bit K-quants medium",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q5_K_S)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q5_K_S.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.51 GB - 5-bit K-quants small"
+			"description": "V4.0 - 2.51GB - 5-bit K-quants small",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q6_K)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q6_K.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "2.96 GB - 6-bit quantization"
+			"description": "V4.0 - 2.96GB - 6-bit quantization",
+			"download_path": "MiniCPM-v-4"
 		},
 		"MiniCPM-V-4 (Q8_0)": {
 			"name": "openbmb/MiniCPM-V-4-gguf/ggml-model-Q8_0.gguf",
 			"mmproj": "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf",
-			"description": "3.83 GB - 8-bit quantization, highest quality"
-		},
-		"MiniCPM-V-2.6 (Q2_K)": {
-			"name": "openbmb/MiniCPM-V-2_6-gguf/ggml-model-Q2_K.gguf",
-			"mmproj": "openbmb/MiniCPM-V-2_6-gguf/mmproj-model-f16.gguf",
-			"description": "3.01 GB - Smallest size, lowest quality"
-		},
-		"MiniCPM-V-2.6 (Q3_K_S)": {
-			"name": "openbmb/MiniCPM-V-2_6-gguf/ggml-model-Q3_K_S.gguf",
-			"mmproj": "openbmb/MiniCPM-V-2_6-gguf/mmproj-model-f16.gguf",
-			"description": "3.49 GB - 3-bit small, good for low-end hardware"
-		},
-		"MiniCPM-V-2.6 (Q3_K_M)": {
-			"name": "openbmb/MiniCPM-V-2_6-gguf/ggml-model-Q3_K_M.gguf",
-			"mmproj": "openbmb/MiniCPM-V-2_6-gguf/mmproj-model-f16.gguf",
-			"description": "3.81 GB - 3-bit medium, balanced for low-end hardware"
-		},
-		"MiniCPM-V-2.6 (Q4_0)": {
-			"name": "openbmb/MiniCPM-V-2_6-gguf/ggml-model-Q4_0.gguf",
-			"mmproj": "openbmb/MiniCPM-V-2_6-gguf/mmproj-model-f16.gguf",
-			"description": "4.43 GB - Classic 4-bit quantization"
+			"description": "V4.0 - 3.83GB - 8-bit quantization, highest quality",
+			"download_path": "MiniCPM-v-4"
 		}
 	}
 }

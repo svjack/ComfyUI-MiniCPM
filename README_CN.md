@@ -1,6 +1,8 @@
 # ComfyUI-MiniCPM
 
-🖼️ 一个用于 MiniCPM 视觉语言模型的 ComfyUI 自定义节点，支持高质量的图像描述和分析。
+一个用于 MiniCPM 视觉语言模型的 ComfyUI 自定义节点，支持 v4、v4.5 及 v4 GGUF 格式，实现高质量图像描述与视觉分析。
+
+**🎉 现在支持 MiniCPM-V-4.5！最新的模型，拥有增强的能力。**
 
 - MiniCPM-V-4
 [![MiniCPM-V-4](example_workflows/MiniCPM-V-4.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4.json)
@@ -12,16 +14,24 @@
 [![MiniCPM-V-4_video](example_workflows/MiniCPM-V-4_video.jpg)](https://github.com/1038lab/ComfyUI-MiniCPM/blob/main/example_workflows/MiniCPM-V-4_video.json)
 
 ---
+## 新闻与更新
+
+- **2025/08/27**：ComfyUI-MiniCPM 更新至 **v1.1.0**（[更新日志](https://github.com/1038lab/ComfyUI-MiniMPC/blob/main/update.md#v110-2025-08-27)）
+
+  - 新增对 **MiniCPM-V-4.5** 模型（Transformers）的支持
+
 
 ## 功能特点
 
-- 支持 **MiniCPM-V-4 (Transformers)** 和 **MiniCPM-V-4 (GGUF)** 模型
+- 支持 **MiniCPM-V-4.5 (Transformers)** 和 **MiniCPM-V-4.0 (GGUF)** 模型
+- **最新 MiniCPM-V-4.5** 通过 Transformers 提供增强的能力
 - 多种描述类型，适用于不同使用场景（描述、标题、分析等）
 - 内存管理选项，平衡显存使用和速度
 - 首次使用时自动下载模型文件，便于设置
 - 可自定义参数：最大令牌数、温度、top-p/k 采样、重复惩罚
 - 高级节点，支持全参数控制
 - 向后兼容的旧版节点
+- V4.0 模型的全面 GGUF 量化选项
 
 ---
 
@@ -45,15 +55,37 @@ pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
 ## 支持的模型
 
 ### Transformers 模型
-| 模型              | 描述                            |
-| ------------------ | -------------------------------------- |
-| MiniCPM-V-4-int4   | 4位量化版本，内存占用更小 |
-| MiniCPM-V-4        | 全精度版本，质量更高 |
+| 模型                | 描述                                    |
+| -------------------- | ---------------------------------------------- |
+| **MiniCPM-V-4.5**        | 🌟 **最新 V4.5 版本，增强能力** |
+| **MiniCPM-V-4.5-int4**   | 🌟 **V4.5 4位量化版本，内存占用更小** |
+| MiniCPM-V-4          | V4.0 全精度版本，质量更高   |
+| MiniCPM-V-4-int4     | V4.0 4位量化版本，内存占用更小 |
+
+https://huggingface.co/openbmb/MiniCPM-V-4_5  
+https://huggingface.co/openbmb/MiniCPM-V-4_5-int4  
+https://huggingface.co/openbmb/MiniCPM-V-4
+https://huggingface.co/openbmb/MiniCPM-V-4-int4
 
 ### GGUF 模型
-| 模型              | 描述                            |
-| ------------------ | -------------------------------------- |
-| MiniCPM-V-4 (GGUF) | 最新的稳定 GGUF 模型，最佳质量 |
+
+> **注意**：由于 llama-cpp-python 兼容性问题，MiniCPM-V-4.5 GGUF 模型暂时不可用。请使用 MiniCPM-V-4.5 Transformers 模型或 MiniCPM-V-4.0 GGUF 模型。
+
+#### MiniCPM-V-4.0（完全支持）
+| 模型                | 大小      | 描述                           |
+| -------------------- | --------- | ------------------------------------- |
+| **MiniCPM-V-4 (Q4_K_M)** | ~2.19GB   | **推荐的质量/大小平衡** |
+| MiniCPM-V-4 (Q4_0)      | ~2.08GB   | 标准 4-bit 量化          |
+| MiniCPM-V-4 (Q4_1)      | ~2.29GB   | 4-bit 量化改进版          |
+| MiniCPM-V-4 (Q4_K_S)    | ~2.09GB   | 4-bit K-quants 小                 |
+| MiniCPM-V-4 (Q5_0)      | ~2.51GB   | 5-bit 量化                   |
+| MiniCPM-V-4 (Q5_1)      | ~2.72GB   | 5-bit 量化改进          |
+| MiniCPM-V-4 (Q5_K_M)    | ~2.56GB   | 5-bit K-quants 中等                |
+| MiniCPM-V-4 (Q5_K_S)    | ~2.51GB   | 5-bit K-quants 小                 |
+| MiniCPM-V-4 (Q6_K)      | ~2.96GB   | 非常高的质量                    |
+| MiniCPM-V-4 (Q8_0)      | ~3.83GB   | 最高质量量化            |
+
+https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 
 > 模型将在首次运行时自动下载。
 > 也支持手动下载并放置到 `models/prompt_generator`（transformers）或 `models/LLM/GGUF`（GGUF）目录。
@@ -141,6 +173,10 @@ pip install -r ComfyUI/custom_nodes/comfyui-minicpm/requirements.txt
 
 ## 使用技巧
 
+* 🌟 **优先尝试 MiniCPM-V-4.5 Transformers** - 相比 V4.0 拥有增强的能力
+* 获得**最佳平衡**：使用 MiniCPM-V-4 (Q4_K_M) GGUF 模型
+* 获得**最高质量**：使用 MiniCPM-V-4.5 Transformers
+* 面向**低显存**：使用 MiniCPM-V-4.5-int4 或 MiniCPM-V-4 (Q4_0) GGUF
 * 调整温度（0.6-0.8）以平衡创造性和连贯性。
 * 使用 top-p（0.9）和 top-k（80）采样以获得自然的输出多样性。
 * 在性能较低的 GPU 上降低最大令牌数或精度（bf16/fp16）以获得更快的生成速度。

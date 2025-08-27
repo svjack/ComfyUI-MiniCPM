@@ -59,27 +59,56 @@ class MiniCPM_GGUF_Models:
                 raise ValueError("Invalid model path")
             repo_path, filename = model.rsplit("/", 1)
 
-            model_path = llm_models_dir / filename
-            if not model_path.exists():
-                print(f"Downloading model: {filename}")
-                model_path = Path(hf_hub_download(
-                    repo_id=repo_path,
-                    filename=filename,
-                    local_dir=str(llm_models_dir),
-                    local_dir_use_symlinks=False
-                )).resolve()
+            model_config = None
+            model_key = None
+            for key, config in GGUF_MODELS.items():
+                if config["name"] == model:
+                    model_config = config
+                    model_key = key
+                    break
+            
+            if not model_config:
+                raise ValueError(f"Model configuration not found for: {model}")
 
-            mmproj_filename = GGUF_MODELS.get("MiniCPM-V-4 (Q4_0)", {}).get("mmproj", "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf")
-            mmproj_local = llm_models_dir / Path(mmproj_filename).name
+            if "download_path" in model_config:
+                download_subdir = llm_models_dir / model_config["download_path"]
+            else:
+                download_subdir = llm_models_dir
+            download_subdir.mkdir(parents=True, exist_ok=True)
+
+            model_path = download_subdir / filename
+            if not model_path.exists():
+                print(f"Downloading GGUF model: {filename} (large file, please wait...)")
+                try:
+                    model_path = Path(hf_hub_download(
+                        repo_id=repo_path,
+                        filename=filename,
+                        local_dir=str(download_subdir)
+                    )).resolve()
+                except Exception as e:
+                    print(f"GGUF model download failed: {e}")
+                    raise
+
+            mmproj_filename = model_config.get("mmproj")
+            if not mmproj_filename:
+                if "MiniCPM-V-4.5" in model_key or "4_5" in model:
+                    mmproj_filename = "openbmb/MiniCPM-V-4_5-gguf/mmproj-model-f16.gguf"
+                else:
+                    mmproj_filename = "openbmb/MiniCPM-V-4-gguf/mmproj-model-f16.gguf"
+            
+            mmproj_local = download_subdir / Path(mmproj_filename).name
             if not mmproj_local.exists():
-                print(f"Downloading mmproj: {Path(mmproj_filename).name}")
+                print(f"Downloading vision model: {Path(mmproj_filename).name}...")
                 repo_path, filename = mmproj_filename.rsplit("/", 1)
-                mmproj_local = Path(hf_hub_download(
-                    repo_id=repo_path,
-                    filename=filename,
-                    local_dir=str(llm_models_dir),
-                    local_dir_use_symlinks=False
-                )).resolve()
+                try:
+                    mmproj_local = Path(hf_hub_download(
+                        repo_id=repo_path,
+                        filename=filename,
+                        local_dir=str(download_subdir)
+                    )).resolve()
+                except Exception as e:
+                    print(f"Vision model download failed: {e}")
+                    raise
 
             n_ctx = MODEL_SETTINGS["context_window"]
             n_batch = 2048
@@ -107,16 +136,37 @@ class MiniCPM_GGUF_Models:
                     )
                 except Exception as model_error:
                     error_msg = str(model_error).lower()
-                    if "unknown minicpmv version" in error_msg:
-                        raise RuntimeError(
-                            f"MiniCPM version compatibility issue detected.\n"
-                            f"Your llama-cpp-python version doesn't support this model.\n"
-                            f"Try:\n"
-                            f"1. Update llama-cpp-python: pip install --upgrade llama-cpp-python\n"
-                            f"2. Try different llama-cpp-python version: pip install llama-cpp-python==0.2.90\n"
-                            f"3. Or use the original MiniCPM transformers node instead\n"
-                            f"Original error: {model_error}"
-                        )
+                    if "unknown minicpmv version" in error_msg or "unsupported minicpmv version" in error_msg:
+                        # Check if this is a V4.5 model
+                        is_v45_model = any([
+                            "4.5" in model.lower(),
+                            "4_5" in model.lower(),
+                            "v4.5" in model.lower()
+                        ])
+                        
+                        if is_v45_model:
+                            raise RuntimeError(
+                                f"MiniCPM-V-4.5 compatibility issue detected.\n"
+                                f"MiniCPM-V-4.5 support was just added to llama.cpp on Aug 26, 2025 (PR #15575).\n"
+                                f"Your llama-cpp-python 0.3.16 was compiled before this update.\n\n"
+                                f"Solutions:\n"
+                                f"1. 🔄 Wait for new llama-cpp-python release (recommended - should be available soon)\n"
+                                f"2. 🔨 Compile from source: pip uninstall llama-cpp-python && pip install llama-cpp-python --force-reinstall --no-cache-dir\n"
+                                f"3. 🎯 Use MiniCPM-V-4.5 Transformers node instead (works perfectly)\n"
+                                f"4. 🔙 Use MiniCPM-V-4.0 GGUF models (fully supported)\n\n"
+                                f"Background: MiniCPM-V-4.5 GGUF support requires the latest llama.cpp code.\n"
+                                f"Original error: {model_error}"
+                            )
+                        else:
+                            raise RuntimeError(
+                                f"MiniCPM version compatibility issue detected.\n"
+                                f"Your llama-cpp-python version doesn't support this model.\n\n"
+                                f"Try:\n"
+                                f"1. Update llama-cpp-python: pip install --upgrade llama-cpp-python\n"
+                                f"2. Try different version: pip install llama-cpp-python==0.2.90\n"
+                                f"3. Use the MiniCPM transformers node instead\n\n"
+                                f"Original error: {model_error}"
+                            )
                     else:
                         raise model_error
 
@@ -222,19 +272,6 @@ class MiniCPM_GGUF_Models:
             return f"Generation error: {str(e)}"
         finally:
             gc.collect()
-
-    # def _clean_output(self, text: str) -> str:
-    #     if not text:
-    #         return text
-    #     text = re.sub(r'^[\s\-•*]+', '', text)
-    #     text = re.sub(r'^(?!1\.)\d+[\.\)\s\-]+', '', text)
-    # #   text = re.sub(r'^\d+[\.\)\s\-]+', '', text)
-    #     text = re.sub(r'^(Assistant|User|MiniCPM|AI):\s*', '', text, flags=re.IGNORECASE)
-    #     text = re.sub(r'^[A-Z][a-z]+:\s*', '', text)
-    #     text = text.strip()
-    #     if not text:
-    #         return "Unable to generate description."
-    #     return text
     
     def _clean_output(self, text: str) -> str:
         if not text:
@@ -352,7 +389,6 @@ class MiniCPM_GGUF_Base:
         frames = [ToPILImage()(v.permute([2, 0, 1])).convert("RGB") for v in frames]
         return frames
 
-
 class AILab_MiniCPM_4_V_GGUF(MiniCPM_GGUF_Base):
     @classmethod
     def INPUT_TYPES(cls):
@@ -374,7 +410,7 @@ class AILab_MiniCPM_4_V_GGUF(MiniCPM_GGUF_Base):
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("STRING",)
     FUNCTION = "generate"
-    CATEGORY = "🧪AILab/MiniCPM"
+    CATEGORY = "🧪AILab/📝MiniCPM"
 
     def generate(self, image=None, video=None, model=None, preset_prompt="Describe", custom_prompt="", device="Auto", memory_management="Keep in Memory", seed=-1):
         try:
@@ -444,7 +480,7 @@ class AILab_MiniCPM_4_V_GGUF_Advanced(MiniCPM_GGUF_Base):
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("PROMPT", "STRING")
     FUNCTION = "generate"
-    CATEGORY = "🧪AILab/MiniCPM"
+    CATEGORY = "🧪AILab/📝MiniCPM"
 
     def generate(self, image=None, video=None, model=None, preset_prompt="Describe", custom_prompt="", system_prompt="", max_new_tokens=None, temperature=None, top_p=None, top_k=None, repetition_penalty=None, video_max_num_frames=64, video_max_slice_nums=2, device="Auto", memory_management="Keep in Memory", seed=-1):
         try:

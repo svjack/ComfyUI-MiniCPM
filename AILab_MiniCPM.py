@@ -9,10 +9,14 @@ import json
 import gc
 import sys
 import io
+import warnings
 from pathlib import Path
 
 os.environ['TRANSFORMERS_VERBOSITY'] = 'error'
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
+
+# Suppress transformers FutureWarnings for better user experience
+warnings.filterwarnings("ignore", category=FutureWarning, module="transformers")
 
 if torch.cuda.is_available():
     torch.backends.cudnn.benchmark = True
@@ -45,12 +49,11 @@ class MiniCPM_Transformers_Models:
             self.model_checkpoint = prompt_generator_dir / Path(model_id).name
 
             if not self.model_checkpoint.exists():
-                print(f"Downloading model: {model_id}")
+                print(f"Downloading model: {model_id} (this may take several minutes...)")
                 from huggingface_hub import snapshot_download
                 snapshot_download(
                     repo_id=model_id,
-                    local_dir=str(self.model_checkpoint),
-                    local_dir_use_symlinks=False,
+                    local_dir=str(self.model_checkpoint)
                 )
 
             self.device = torch.device("cuda" if processing_mode == "GPU" and torch.cuda.is_available() else "cpu")
@@ -244,7 +247,7 @@ class AILab_MiniCPM_4_V(MiniCPM_Transformers_Base):
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("STRING",)
     FUNCTION = "generate"
-    CATEGORY = "🧪AILab/MiniCPM"
+    CATEGORY = "🧪AILab/📝MiniCPM"
 
     def generate(self, image=None, video=None, model=None, preset_prompt="Describe", custom_prompt="", device="Auto", memory_management="Keep in Memory", seed=-1):
         try:
@@ -322,7 +325,7 @@ class AILab_MiniCPM_4_V_Advanced(MiniCPM_Transformers_Base):
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("PROMPT", "STRING")
     FUNCTION = "generate"
-    CATEGORY = "🧪AILab/MiniCPM"
+    CATEGORY = "🧪AILab/📝MiniCPM"
 
     def generate(self, image=None, video=None, model=None, preset_prompt="Describe", custom_prompt="", system_prompt="", max_new_tokens=None, temperature=None, top_p=None, top_k=None, repetition_penalty=None, video_max_num_frames=64, video_max_slice_nums=2, device="Auto", memory_management="Keep in Memory", seed=-1):
         try:

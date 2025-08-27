@@ -20,27 +20,16 @@ try:
     import llama_cpp
     GGUF_AVAILABLE = True
 except ImportError:
-    # Use Windows color codes for better visibility
-    print("\n" + "=" * 80)
-    print("\033[91mWARNING: llama-cpp-python library not found, GGUF functionality is not available\033[0m")
-    print("\033[93mTo use GGUF features, install additional dependencies:\033[0m")
-    print("\033[96mpip install llama-cpp-python\033[0m")
-    
-    # Check if installation guide exists and provide link
-    install_guide = current_dir / "llama_cpp_install.md"
-    if install_guide.exists():
-        print("\033[93mFor detailed installation instructions with CUDA support, please see:\033[0m")
-        print(f"\033[96m{install_guide}\033[0m")
-    
-    print("\033[92mBasic MiniCPM functionality is still available\033[0m")
-    print("=" * 80 + "\n")
+    print("\033[93m⚠️  GGUF functionality unavailable - install llama-cpp-python for GGUF support\033[0m")
+    print("\033[96m📖 Installation guide: https://github.com/1038lab/ComfyUI-MiniCPM/tree/main/llama_cpp_install\033[0m")
 except Exception as e:
-    print("\n" + "=" * 80)
-    print(f"\033[91mError loading GGUF dependencies: {str(e)}\033[0m")
-    print("\033[92mBasic MiniCPM functionality is still available\033[0m")
-    print("=" * 80 + "\n")
+    print(f"\033[91m❌ GGUF loading error: {str(e)}\033[0m")
+    print("\033[96m📖 Installation guide: https://github.com/1038lab/ComfyUI-MiniCPM/tree/main/llama_cpp_install\033[0m")
 
 # Process all Python files in the directory (auto-registration functionality)
+loaded_modules = []
+skipped_modules = []
+
 for file in current_dir.glob('*.py'):
     if file.name not in EXCLUDE_FILES:
         try:
@@ -51,24 +40,26 @@ for file in current_dir.glob('*.py'):
             
             # Skip GGUF module if llama-cpp-python is not available
             if not GGUF_AVAILABLE and 'GGUF' in module_name:
-                print(f"\033[93mSkipping {module_name} - GGUF functionality not available\033[0m")
+                skipped_modules.append(module_name)
                 continue
                 
             spec.loader.exec_module(module)
             
             if hasattr(module, 'NODE_CLASS_MAPPINGS'):
                 NODE_CLASS_MAPPINGS.update(module.NODE_CLASS_MAPPINGS)
-                print(f"\033[92mLoaded {module_name} nodes: {list(module.NODE_CLASS_MAPPINGS.keys())}\033[0m")
+                loaded_modules.append(module_name)
             
             if hasattr(module, 'NODE_DISPLAY_NAME_MAPPINGS'):
                 NODE_DISPLAY_NAME_MAPPINGS.update(module.NODE_DISPLAY_NAME_MAPPINGS)
                 
         except Exception as e:
-            print(f"\033[91mError loading module {module_name}: {str(e)}\033[0m")
-            if 'GGUF' not in module_name:  # Only show warning for non-GGUF modules
-                print(f"\033[93mWarning: Failed to load {module_name} module\033[0m")
+            print(f"\033[91m❌ Failed to load {module_name}: {str(e)}\033[0m")
+            skipped_modules.append(module_name)
 
-print(f"\n\033[92mMiniCPM nodes loaded: {list(NODE_CLASS_MAPPINGS.keys())}\033[0m")
-print(f"\033[92mTotal nodes registered: {len(NODE_CLASS_MAPPINGS)}\033[0m")
+# Summary output
+if loaded_modules:
+    print(f"\033[92m✅ MiniCPM loaded: {len(NODE_CLASS_MAPPINGS)} nodes from {len(loaded_modules)} modules\033[0m")
+if skipped_modules:
+    print(f"\033[93m⏭️  Skipped: {', '.join(skipped_modules)}\033[0m")
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']

@@ -24,7 +24,14 @@
 		"Style": "Describe the artistic or visual style of this image.",
 		"Location": "Where might this image be taken? Analyze the setting or location.",
 		"Question": "What question could be asked based on this image?",
-		"Creative": "Describe this image as if writing the beginning of a short story."
+		"Creative": "Describe this image as if writing the beginning of a short story.",
+		"Video Describe": "Describe this video in detail.",
+		"Video Analyze": "Analyze the main elements and scene in this video.",
+		"Video Identify": "What objects and subjects do you see in this video?",
+		"Video Explain": "Explain what's happening in this video.",
+		"Video List": "List the main objects visible in this video.",
+		"Video Scene": "Describe the scene and setting of this video.",
+		"Video Details": "What are the key details in this video?",
 	},
 	"transformers_models": {
 		"MiniCPM-V-4.5-int4": {

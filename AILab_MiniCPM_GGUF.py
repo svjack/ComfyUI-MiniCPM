@@ -389,7 +389,7 @@ class MiniCPM_GGUF_Base:
         frames = [ToPILImage()(v.permute([2, 0, 1])).convert("RGB") for v in frames]
         return frames
 
-class AILab_MiniCPM_4_V_GGUF(MiniCPM_GGUF_Base):
+class AILab_MiniCPM_V_GGUF(MiniCPM_GGUF_Base):
     @classmethod
     def INPUT_TYPES(cls):
         model_list = list(GGUF_MODELS.keys())
@@ -451,7 +451,7 @@ class AILab_MiniCPM_4_V_GGUF(MiniCPM_GGUF_Base):
             return (f"Error: {str(e)}",)
 
 
-class AILab_MiniCPM_4_V_GGUF_Advanced(MiniCPM_GGUF_Base):
+class AILab_MiniCPM_V_GGUF_Advanced(MiniCPM_GGUF_Base):
     @classmethod
     def INPUT_TYPES(cls):
         model_list = list(GGUF_MODELS.keys())
@@ -529,11 +529,11 @@ class AILab_MiniCPM_4_V_GGUF_Advanced(MiniCPM_GGUF_Base):
 
 
 NODE_CLASS_MAPPINGS = {
-    "AILab_MiniCPM_4_V_GGUF": AILab_MiniCPM_4_V_GGUF,
-    "AILab_MiniCPM_4_V_GGUF_Advanced": AILab_MiniCPM_4_V_GGUF_Advanced,
+    "AILab_MiniCPM_V_GGUF": AILab_MiniCPM_V_GGUF,
+    "AILab_MiniCPM_V_GGUF_Advanced": AILab_MiniCPM_V_GGUF_Advanced,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "AILab_MiniCPM_4_V_GGUF": "MiniCPM-4-V-GGUF",
-    "AILab_MiniCPM_4_V_GGUF_Advanced": "MiniCPM-4-V-GGUF Advanced",
+    "AILab_MiniCPM_V_GGUF": "MiniCPM-V GGUF",
+    "AILab_MiniCPM_V_GGUF_Advanced": "MiniCPM-V GGUF (Advanced)",
 }

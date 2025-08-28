@@ -226,7 +226,7 @@ class MiniCPM_Transformers_Base:
         return frames
 
 
-class AILab_MiniCPM_4_V(MiniCPM_Transformers_Base):
+class AILab_MiniCPM_V(MiniCPM_Transformers_Base):
     @classmethod
     def INPUT_TYPES(cls):
         model_list = list(TRANSFORMERS_MODELS.keys())
@@ -296,7 +296,7 @@ class AILab_MiniCPM_4_V(MiniCPM_Transformers_Base):
             return (f"Error: {str(e)}",)
 
 
-class AILab_MiniCPM_4_V_Advanced(MiniCPM_Transformers_Base):
+class AILab_MiniCPM_V_Advanced(MiniCPM_Transformers_Base):
     @classmethod
     def INPUT_TYPES(cls):
         model_list = list(TRANSFORMERS_MODELS.keys())
@@ -381,11 +381,11 @@ class AILab_MiniCPM_4_V_Advanced(MiniCPM_Transformers_Base):
 
 
 NODE_CLASS_MAPPINGS = {
-    "AILab_MiniCPM_4_V": AILab_MiniCPM_4_V,
-    "AILab_MiniCPM_4_V_Advanced": AILab_MiniCPM_4_V_Advanced,
+    "AILab_MiniCPM_V": AILab_MiniCPM_V,
+    "AILab_MiniCPM_V_Advanced": AILab_MiniCPM_V_Advanced,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "AILab_MiniCPM_4_V": "MiniCPM-4-V",
-    "AILab_MiniCPM_4_V_Advanced": "MiniCPM-4-V Advanced",
+    "AILab_MiniCPM_V": "MiniCPM-V",
+    "AILab_MiniCPM_V_Advanced": "MiniCPM-V (Advanced)",
 }

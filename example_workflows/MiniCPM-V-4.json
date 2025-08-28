@@ -1,9 +1,96 @@
 {
   "id": "6cdda1b6-9bfc-4b5f-9d6b-60ef9a9d93fc",
   "revision": 0,
-  "last_node_id": 13,
-  "last_link_id": 13,
+  "last_node_id": 15,
+  "last_link_id": 18,
   "nodes": [
+    {
+      "id": 9,
+      "type": "PreviewAny",
+      "pos": [
+        660.1156616210938,
+        316.7520446777344
+      ],
+      "size": [
+        568.9834594726562,
+        356.5537109375
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 16
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "PreviewAny",
+      "pos": [
+        660.1156616210938,
+        882.4295654296875
+      ],
+      "size": [
+        553.281005859375,
+        303.2892761230469
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "PreviewAny",
+      "pos": [
+        660.1156616210938,
+        735.021484375
+      ],
+      "size": [
+        328.9669494628906,
+        88
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 14
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
     {
       "id": 7,
       "type": "AILab_LoadImage",
@@ -24,8 +111,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            9,
-            11
+            17,
+            18
           ]
         },
         {
@@ -62,10 +149,10 @@
       "bgcolor": "#4b5b73"
     },
     {
-      "id": 12,
-      "type": "AILab_MiniCPM_4_V",
+      "id": 14,
+      "type": "AILab_MiniCPM_V",
       "pos": [
-        243,
+        237.73382568359375,
         316.7520446777344
       ],
       "size": [
@@ -80,7 +167,7 @@
           "name": "image",
           "shape": 7,
           "type": "IMAGE",
-          "link": 9
+          "link": 17
         },
         {
           "name": "video",
@@ -94,58 +181,29 @@
           "name": "STRING",
           "type": "STRING",
           "links": [
-            10
+            16
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "AILab_MiniCPM_4_V"
+        "Node name for S&R": "AILab_MiniCPM_V"
       },
       "widgets_values": [
-        "MiniCPM-V-4",
+        "MiniCPM-V-4.5-int4",
         "Describe",
         "",
         "Auto",
-        "Keep in Memory",
-        951752480405061,
+        "Clear After Run",
+        0,
         "randomize"
       ]
     },
     {
-      "id": 9,
-      "type": "PreviewAny",
+      "id": 15,
+      "type": "AILab_MiniCPM_V_Advanced",
       "pos": [
-        660.1156616210938,
-        319.47943115234375
-      ],
-      "size": [
-        568.9834594726562,
-        356.5537109375
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 10
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 13,
-      "type": "AILab_MiniCPM_4_V_Advanced",
-      "pos": [
-        236,
-        733
+        237.73382568359375,
+        735.021484375
       ],
       "size": [
         400,
@@ -159,7 +217,7 @@
           "name": "image",
           "shape": 7,
           "type": "IMAGE",
-          "link": 11
+          "link": 18
         },
         {
           "name": "video",
@@ -173,22 +231,22 @@
           "name": "PROMPT",
           "type": "STRING",
           "links": [
-            12
+            14
           ]
         },
         {
           "name": "STRING",
           "type": "STRING",
           "links": [
-            13
+            15
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "AILab_MiniCPM_4_V_Advanced"
+        "Node name for S&R": "AILab_MiniCPM_V_Advanced"
       },
       "widgets_values": [
-        "MiniCPM-V-4-int4",
+        "MiniCPM-V-4.5-int4",
         "Describe",
         "",
         "You are MiniCPM-V, a helpful, concise and knowledgeable vision-language assistant. Answer directly and stay on task.",
@@ -200,110 +258,52 @@
         64,
         2,
         "Auto",
-        "Keep in Memory",
-        348264610155900,
+        "Clear After Run",
+        0,
         "randomize"
       ]
-    },
-    {
-      "id": 11,
-      "type": "PreviewAny",
-      "pos": [
-        660.1156616210938,
-        882.4295654296875
-      ],
-      "size": [
-        553.281005859375,
-        303.2892761230469
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 13
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 10,
-      "type": "PreviewAny",
-      "pos": [
-        660.1156616210938,
-        740.8180541992188
-      ],
-      "size": [
-        328.9669494628906,
-        88
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 12
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
     }
   ],
   "links": [
     [
-      9,
-      7,
-      0,
-      12,
-      0,
-      "IMAGE"
-    ],
-    [
-      10,
-      12,
-      0,
-      9,
-      0,
-      "*"
-    ],
-    [
-      11,
-      7,
-      0,
-      13,
-      0,
-      "IMAGE"
-    ],
-    [
-      12,
-      13,
+      14,
+      15,
       0,
       10,
       0,
       "*"
     ],
     [
-      13,
-      13,
+      15,
+      15,
       1,
       11,
       0,
       "*"
+    ],
+    [
+      16,
+      14,
+      0,
+      9,
+      0,
+      "*"
+    ],
+    [
+      17,
+      7,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      18,
+      7,
+      0,
+      15,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],
@@ -312,11 +312,11 @@
     "ds": {
       "scale": 1,
       "offset": [
-        673.9846446280992,
-        -94.52150413223131
+        668.9846446280992,
+        -96.52150413223131
       ]
     },
-    "frontendVersion": "1.24.4"
+    "frontendVersion": "1.25.11"
   },
   "version": 0.4
 }

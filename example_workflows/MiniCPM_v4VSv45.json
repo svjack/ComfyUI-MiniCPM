@@ -1,65 +1,44 @@
 {
   "id": "381852d7-19d9-4c1d-bc01-6ea2e198fd7a",
   "revision": 0,
-  "last_node_id": 8,
-  "last_link_id": 6,
+  "last_node_id": 10,
+  "last_link_id": 10,
   "nodes": [
     {
-      "id": 5,
-      "type": "AILab_MiniCPM_4_V",
+      "id": 8,
+      "type": "PreviewAny",
       "pos": [
-        1247.7987060546875,
-        867.798583984375
+        1653.2158203125,
+        870.3551635742188
       ],
       "size": [
-        400,
-        252
+        517.2999877929688,
+        236.60000610351562
       ],
       "flags": {},
-      "order": 2,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
-          "name": "image",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": 4
-        },
-        {
-          "name": "video",
-          "shape": 7,
-          "type": "VIDEO",
-          "link": null
+          "name": "source",
+          "type": "*",
+          "link": 7
         }
       ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            5
-          ]
-        }
-      ],
+      "outputs": [],
       "properties": {
-        "Node name for S&R": "AILab_MiniCPM_4_V"
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
       },
-      "widgets_values": [
-        "MiniCPM-V-4-int4",
-        "Describe",
-        "",
-        "Auto",
-        "Clear After Run",
-        85773759966903,
-        "randomize"
-      ]
+      "widgets_values": []
     },
     {
-      "id": 6,
-      "type": "AILab_MiniCPM_4_V",
+      "id": 9,
+      "type": "AILab_MiniCPM_V",
       "pos": [
-        1250.052734375,
-        560.1884155273438
+        1237.1396484375,
+        563.9450073242188
       ],
       "size": [
         400,
@@ -73,7 +52,7 @@
           "name": "image",
           "shape": 7,
           "type": "IMAGE",
-          "link": 3
+          "link": 9
         },
         {
           "name": "video",
@@ -87,12 +66,12 @@
           "name": "STRING",
           "type": "STRING",
           "links": [
-            6
+            8
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "AILab_MiniCPM_4_V"
+        "Node name for S&R": "AILab_MiniCPM_V"
       },
       "widgets_values": [
         "MiniCPM-V-4.5-int4",
@@ -100,67 +79,9 @@
         "",
         "Auto",
         "Clear After Run",
-        100,
-        "fixed"
+        0,
+        "randomize"
       ]
-    },
-    {
-      "id": 7,
-      "type": "PreviewAny",
-      "pos": [
-        1671.998779296875,
-        560.1884155273438
-      ],
-      "size": [
-        522.9000244140625,
-        253.80001831054688
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 6
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 8,
-      "type": "PreviewAny",
-      "pos": [
-        1671.998779296875,
-        873.0578002929688
-      ],
-      "size": [
-        517.2999877929688,
-        236.60000610351562
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 5
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
     },
     {
       "id": 4,
@@ -182,8 +103,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            3,
-            4
+            9,
+            10
           ]
         },
         {
@@ -209,53 +130,132 @@
       ],
       "color": "#2e3e57",
       "bgcolor": "#4b5b73"
+    },
+    {
+      "id": 10,
+      "type": "AILab_MiniCPM_V",
+      "pos": [
+        1237.1396484375,
+        870.3551635742188
+      ],
+      "size": [
+        400,
+        252
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 10
+        },
+        {
+          "name": "video",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AILab_MiniCPM_V"
+      },
+      "widgets_values": [
+        "MiniCPM-V-4-int4",
+        "Describe",
+        "",
+        "Auto",
+        "Clear After Run",
+        0,
+        "randomize"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "PreviewAny",
+      "pos": [
+        1653.2158203125,
+        563.9450073242188
+      ],
+      "size": [
+        522.9000244140625,
+        253.80001831054688
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 8
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
     }
   ],
   "links": [
     [
-      3,
-      4,
-      0,
-      6,
-      0,
-      "IMAGE"
-    ],
-    [
-      4,
-      4,
-      0,
-      5,
-      0,
-      "IMAGE"
-    ],
-    [
-      5,
-      5,
+      7,
+      10,
       0,
       8,
       0,
       "*"
     ],
     [
-      6,
-      6,
+      8,
+      9,
       0,
       7,
       0,
       "*"
+    ],
+    [
+      9,
+      4,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      10,
+      4,
+      0,
+      10,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.3310000000000004,
+      "scale": 1.1000000000000003,
       "offset": [
-        -370.4961708006059,
-        -425.2012782652591
+        -166.7997019801702,
+        -415.186251969241
       ]
     },
-    "frontendVersion": "1.24.4"
+    "frontendVersion": "1.25.11"
   },
   "version": 0.4
 }

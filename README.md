@@ -6,6 +6,7 @@ A custom ComfyUI node for MiniCPM vision-language models, supporting v4, v4.5, a
 
 ---
 ## News & Updates
+- **2025/08/28**: Update ComfyUI-MIniCPM to **v1.1.1** ( [update.md](update.md#v111-2025-08-28) )
 - **2025/08/27**: Update ComfyUI-MIniCPM to **v1.1.0** ( [update.md](update.md#v110-2025-08-27) )
 [![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
 - Added support for **MiniCPM-V-4.5** models (Transformers)
@@ -198,5 +199,6 @@ https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 ---
 
 ## License
+
 
 GPL-3.0 License

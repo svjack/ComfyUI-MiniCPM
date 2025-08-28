@@ -6,7 +6,7 @@
 
 ---
 ## 新闻与更新
-
+- **2025/08/28**：ComfyUI-MiniCPM 更新至 **v1.1.1**（[更新日志](update.md#v111-2025-08-28)）
 - **2025/08/27**：ComfyUI-MiniCPM 更新至 **v1.1.0**（[更新日志](https://github.com/1038lab/ComfyUI-MiniMPC/blob/main/update.md#v110-2025-08-27)）
 [![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
 - 新增对 **MiniCPM-V-4.5** 模型（Transformers）的支持
@@ -223,5 +223,6 @@ GPL-3.0 许可证
 感谢所有为这个项目做出贡献的开发者和用户！
 
 ---
+
 
 **注意:** 如果您需要英文版文档，请查看 [README.md](README.md)。 

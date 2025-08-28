@@ -1,5 +1,9 @@
 # ComfyUI-MiniCPM Update Log
-
+## V1.1.1 (2025-08-28)
+- **Internationalization (i18n) Support**: Added support for multiple languages, including EN, FR, JP, KO, RU, ZH.
+- **Updated Example Workflows**: Revised and expanded example workflows for improved clarity and usability.
+- **Renaming of Custom Nodes**: Enhanced organization and naming conventions for custom nodes to improve structure and readability.
+- **Expanded Preset Prompts**: Added additional preset prompts to increase flexibility and functionality.
 ## V1.1.0 (2025-08-27)
 ### New Features
 [![MiniCPM v4 VS v45](example_workflows/MiniCPM_v4VSv45.jpg)](example_workflows/MiniCPM_v4VSv45.json)
@@ -46,4 +50,5 @@
 - **Auto-Download**: Automatic model downloading from Hugging Face
 - **Cross-Platform**: Windows, macOS, and Linux support
 - **CUDA Acceleration**: GPU acceleration support for faster inference
+
 - **System Prompts**: Customizable system prompts for different use cases

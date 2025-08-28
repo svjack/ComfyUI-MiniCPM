@@ -31,7 +31,7 @@
 		"Video Explain": "Explain what's happening in this video.",
 		"Video List": "List the main objects visible in this video.",
 		"Video Scene": "Describe the scene and setting of this video.",
-		"Video Details": "What are the key details in this video?",
+		"Video Details": "What are the key details in this video?"
 	},
 	"transformers_models": {
 		"MiniCPM-V-4.5-int4": {

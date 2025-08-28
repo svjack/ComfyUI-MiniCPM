@@ -1,73 +1,15 @@
 {
   "id": "6cdda1b6-9bfc-4b5f-9d6b-60ef9a9d93fc",
   "revision": 0,
-  "last_node_id": 22,
-  "last_link_id": 29,
+  "last_node_id": 23,
+  "last_link_id": 31,
   "nodes": [
-    {
-      "id": 9,
-      "type": "PreviewAny",
-      "pos": [
-        660.1156616210938,
-        316.7520446777344
-      ],
-      "size": [
-        554.9834594726562,
-        358.5537109375
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 22
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 11,
-      "type": "PreviewAny",
-      "pos": [
-        660.1156616210938,
-        728.7112426757812
-      ],
-      "size": [
-        551.0270385742188,
-        254.4538116455078
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 24
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.49",
-        "Node name for S&R": "PreviewAny"
-      },
-      "widgets_values": []
-    },
     {
       "id": 22,
       "type": "ImageBatchPath",
       "pos": [
         -428.35601806640625,
-        317.37298583984375
+        316.7520446777344
       ],
       "size": [
         400,
@@ -132,7 +74,7 @@
           "type": "IMAGE",
           "links": [
             20,
-            23
+            30
           ]
         }
       ],
@@ -146,7 +88,36 @@
       "bgcolor": "#4b5b73"
     },
     {
-      "id": 18,
+      "id": 9,
+      "type": "PreviewAny",
+      "pos": [
+        660.1156616210938,
+        316.7520446777344
+      ],
+      "size": [
+        554.9834594726562,
+        358.5537109375
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 31
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 23,
       "type": "AILab_MiniCPM_V",
       "pos": [
         237.30288696289062,
@@ -164,7 +135,7 @@
           "name": "image",
           "shape": 7,
           "type": "IMAGE",
-          "link": 23
+          "link": 30
         },
         {
           "name": "video",
@@ -178,7 +149,7 @@
           "name": "STRING",
           "type": "STRING",
           "links": [
-            22
+            31
           ]
         }
       ],
@@ -188,12 +159,41 @@
       "widgets_values": [
         "MiniCPM-V-4.5-int4",
         "Describe",
-        "describe image 1,image 2 and image 3",
+        "Describe image 1, image 2 and image 3",
         "Auto",
         "Clear After Run",
-        169489649850758,
+        585947478085599,
         "randomize"
       ]
+    },
+    {
+      "id": 11,
+      "type": "PreviewAny",
+      "pos": [
+        660.1156616210938,
+        728.7112426757812
+      ],
+      "size": [
+        549.5244140625,
+        261.9669494628906
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 24
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
     },
     {
       "id": 19,
@@ -237,11 +237,11 @@
       },
       "widgets_values": [
         "MiniCPM-V-4 (Q4_0)",
-        "Describe",
-        "what's art style of image 1,image 2 and image 3",
+        "Style",
+        "what's the art style of image 1, image 2 and image 3",
         "Auto",
-        "Clear After Run",
-        251333874323371,
+        "Keep in Memory",
+        199012548679868,
         "randomize"
       ]
     }
@@ -252,22 +252,6 @@
       17,
       0,
       19,
-      0,
-      "IMAGE"
-    ],
-    [
-      22,
-      18,
-      0,
-      9,
-      0,
-      "*"
-    ],
-    [
-      23,
-      17,
-      0,
-      18,
       0,
       "IMAGE"
     ],
@@ -286,16 +270,32 @@
       17,
       0,
       "IMAGE"
+    ],
+    [
+      30,
+      17,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      23,
+      0,
+      9,
+      0,
+      "*"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.4641000000000008,
+      "scale": 1,
       "offset": [
-        45.03973253209634,
-        -249.05190382691876
+        342.6680436884384,
+        -214.30440614096847
       ]
     },
     "frontendVersion": "1.25.11"

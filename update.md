@@ -1,5 +1,6 @@
 # ComfyUI-MiniCPM Update Log
 ## V1.1.1 (2025-08-28)
+![MiniCPM v4 VS v45](https://github.com/user-attachments/assets/ad47e274-2a03-4fda-a7b2-7fa60825eb1e)
 - **Internationalization (i18n) Support**: Added support for multiple languages, including EN, FR, JP, KO, RU, ZH.
 - **Updated Example Workflows**: Revised and expanded example workflows for improved clarity and usability.
 - **Renaming of Custom Nodes**: Enhanced organization and naming conventions for custom nodes to improve structure and readability.
@@ -52,3 +53,4 @@
 - **CUDA Acceleration**: GPU acceleration support for faster inference
 
 - **System Prompts**: Customizable system prompts for different use cases
+

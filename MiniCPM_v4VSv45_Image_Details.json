@@ -1,0 +1,211 @@
+{
+  "id": "381852d7-19d9-4c1d-bc01-6ea2e198fd7a",
+  "revision": 0,
+  "last_node_id": 12,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 12,
+      "type": "SaveStringKJ",
+      "pos": [
+        1711.8402099609375,
+        916.2603149414062
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string",
+          "type": "STRING",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "filename",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "e81f33508b0821ea2f53f4f46a833fa6215626bd",
+        "Node name for S&R": "SaveStringKJ"
+      },
+      "widgets_values": [
+        "text",
+        "output",
+        ".txt"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "LoadImage",
+      "pos": [
+        789.4496459960938,
+        564.9136352539062
+      ],
+      "size": [
+        270,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.59",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "image - 2025-09-19T210446.413.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "AILab_MiniCPM_V",
+      "pos": [
+        1180.9188232421875,
+        569.94189453125
+      ],
+      "size": [
+        400,
+        252
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "name": "video",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            8,
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "1038lab/comfyui-minicpm",
+        "ver": "2ef7b462e964e19450391c3c8861663fd8fdf158",
+        "Node name for S&R": "AILab_MiniCPM_V"
+      },
+      "widgets_values": [
+        "MiniCPM-V-4.5",
+        "Details",
+        "图片中的角色叫优菈，请用中文描述图片，详尽描述人物的外貌、衣着、表情和环境设定及图片风格，并且在你给出的描述中提到人物的名字\"优菈\"。",
+        "Auto",
+        "Clear After Run",
+        931821529836919,
+        "randomize"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "PreviewAny",
+      "pos": [
+        1666.708740234375,
+        567.3338012695312
+      ],
+      "size": [
+        522.9000244140625,
+        253.80001831054688
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 8
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      8,
+      9,
+      0,
+      7,
+      0,
+      "*"
+    ],
+    [
+      11,
+      11,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      9,
+      0,
+      12,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.4641000000000013,
+      "offset": [
+        -761.6781204178737,
+        -406.24681455150045
+      ]
+    },
+    "frontendVersion": "1.26.11",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

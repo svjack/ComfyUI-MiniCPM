@@ -1,3 +1,144 @@
+```python
+import os
+import time
+import subprocess
+from pathlib import Path
+import glob
+import shutil
+
+# Configuration
+SEEDS = [42]
+INPUT_DIR = 'ComfyUI/input'
+OUTPUT_DIR = 'ComfyUI/output'
+PYTHON_PATH = '/environment/miniconda3/envs/system/bin/python'
+SOURCE_IMAGE_DIR = 'Eula_Lawrence_Images'  # 本地图像源目录
+
+def copy_and_sort_images():
+    """从源目录拷贝JPEG文件到输入目录，并按字典序排序"""
+    os.makedirs(INPUT_DIR, exist_ok=True)
+    
+    # 获取源目录中所有jpeg文件（支持.jpg和.jpeg扩展名）
+    image_patterns = ['*.jpg', '*.jpeg']
+    image_paths = []
+    
+    for pattern in image_patterns:
+        image_paths.extend(glob.glob(os.path.join(SOURCE_IMAGE_DIR, pattern)))
+    
+    # 按字典序排序
+    image_paths.sort()
+    
+    # 拷贝文件到输入目录
+    copied_paths = []
+    for src_path in image_paths:
+        filename = os.path.basename(src_path)
+        dst_path = os.path.join(INPUT_DIR, filename)
+        shutil.copy2(src_path, dst_path)
+        copied_paths.append(dst_path)
+    
+    return copied_paths
+
+def get_latest_output_count():
+    """Return the number of TXT files in the output directory"""
+    try:
+        return len(list(Path(OUTPUT_DIR).glob('*.txt')))
+    except:
+        return 0
+
+def wait_for_new_output(initial_count):
+    """Wait until a new TXT file appears in the output directory"""
+    timeout = 300  # 5 minutes timeout
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        current_count = get_latest_output_count()
+        if current_count > initial_count:
+            time.sleep(1)  # additional 1 second delay
+            return True
+        time.sleep(0.5)
+    return False
+
+def generate_script(image_path):
+    """Generate the script with image captioning workflow"""
+    script_content = f"""from comfy_script.runtime import *
+load()
+from comfy_script.runtime.nodes import *
+
+with Workflow():
+    # 加载图像
+    image, _ = LoadImage('{image_path}')
+    
+    # 使用MiniCPM-V模型生成图像描述
+    string = AILabMiniCPMV(image, None, 'MiniCPM-V-4.5', 'Details', '图片中的角色叫优菈，请用中文描述图片，详尽描述人物的外貌、衣着、表情和环境设定及图片风格，并且在你给出的描述中提到人物的名字"优菈"。', 'Auto', 'Clear After Run', 1050658963842269)
+    
+    # 保存生成的文本描述
+    _ = SaveStringKJ(string, 'text', 'output', '.txt')
+"""
+    return script_content
+
+def main():
+    # 确保输出目录存在
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
+    # 拷贝并排序图像文件
+    image_paths = copy_and_sort_images()
+    print(f"Copied {len(image_paths)} images from {SOURCE_IMAGE_DIR} to {INPUT_DIR}")
+    
+    if not image_paths:
+        print("No JPEG images found in the source directory.")
+        return
+
+    # Main processing loop
+    for i, image_path in enumerate(image_paths):
+        # Generate script
+        image_path = image_path.split("/")[-1]
+        script = generate_script(image_path)
+
+        # Write script to file
+        script_filename = f'run_image_captioning.py'
+        with open(script_filename, 'w') as f:
+            f.write(script)
+
+        # Get current output count before running
+        initial_count = get_latest_output_count()
+
+        # Run the script
+        print(f"Processing image {i+1}/{len(image_paths)}")
+        print(f"Image: {os.path.basename(image_path)}")
+        result = subprocess.run([PYTHON_PATH, script_filename], capture_output=True, text=True)
+        
+        # Check if execution was successful
+        if result.returncode != 0:
+            print(f"Error running script: {result.stderr}")
+            continue
+
+        # Wait for new output
+        if not wait_for_new_output(initial_count):
+            print("Timeout waiting for new output. Continuing to next image.")
+            continue
+        
+        print(f"Successfully generated description for image {i+1}")
+
+if __name__ == "__main__":
+    main()
+
+from datasets import load_dataset
+import pathlib
+import pandas as pd
+import numpy as np
+ds = load_dataset("svjack/Eula_Lawrence_Images")["train"]
+
+def r_func(x):
+    with open(x, "r") as f:
+        return f.read().strip()
+
+l0 = pd.Series(
+    pathlib.Path("ComfyUI/output").rglob("*.txt")
+).map(str).map(lambda x: np.nan if "ipynb" in x else x).dropna().sort_values().map(r_func)
+
+ds = ds.select(range(len(l0))).add_column("prompt", l0)
+ds
+```
+
 # ComfyUI-MiniCPM
 
 A custom ComfyUI node for MiniCPM vision-language models, supporting v4, v4.5, and v4 GGUF formats, enabling high-quality image captioning and visual analysis.
@@ -202,3 +343,4 @@ https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 
 
 GPL-3.0 License
+

@@ -1,3 +1,5 @@
+- https://github.com/kijai/ComfyUI-KJNodes
+
 ```python
 import os
 import time
@@ -343,4 +345,5 @@ https://huggingface.co/openbmb/MiniCPM-V-4-gguf
 
 
 GPL-3.0 License
+
 
